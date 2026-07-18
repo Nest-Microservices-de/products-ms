@@ -11,12 +11,14 @@ import * as joi from 'joi';
 interface EnvVars {
     PORT: number;
     DATABASE_URL: string;
+    HOST: string;
 }
 
 // 1. Corregido: Se usa joi.object() para definir el esquema
 const envVarsSchema = joi.object({
     PORT: joi.number().required(),
     DATABASE_URL: joi.string().required(),
+    HOST: joi.string().required(),
 })
 .unknown(true);
 
@@ -31,6 +33,7 @@ const envsVars = value as EnvVars;
 
 export const envs = {
     PORT : envsVars.PORT,
-    DATABASE_URL: envsVars.DATABASE_URL
+    DATABASE_URL: envsVars.DATABASE_URL,
+    HOST: envsVars.HOST
 }
 
